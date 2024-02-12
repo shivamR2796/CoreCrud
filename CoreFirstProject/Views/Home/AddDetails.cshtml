@@ -1,0 +1,193 @@
+﻿@model CoreFirstProject.Models.EmployeeModel
+
+<style>
+    #form-header {
+        margin-top: 5%;
+        text-align: center;
+    }
+
+    #form-tagline {
+        background: #ff6d00;
+        border-top-left-radius: 0.5rem;
+        border-bottom-left-radius: 0.5rem;
+        color: #ffffff;
+        margin-top: 5%;
+        padding: 4%;
+        text-align: left;
+    }
+
+        #form-tagline .fa {
+            margin-bottom: 15%;
+        }
+
+        #form-tagline h2 {
+            margin-bottom: 15%;
+        }
+
+    #form-content {
+        background: #f4f4f4;
+        border-top-right-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+        margin-top: 5%;
+        padding: 3%;
+    }
+
+    .form-group {
+        margin-top: 5%;
+    }
+
+    .contact {
+        padding: 4%;
+        height: 400px;
+    }
+
+    .control-label {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    div .submit-button {
+        margin-top: 3%;
+        text-align: right;
+    }
+
+    button#submit {
+        white-space: normal;
+        width: auto;
+        background: #ff6d00;
+        color: #ffffff;
+        font-weight: 600;
+        width: 25%;
+    }
+
+</style>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+      
+      
+    <div class="container"> <!-- open container -->
+       <div class="row"> <!--  open row -->
+         
+         <div id="form-header" class="col-12">
+           <h1 id="title">Hotel Survey Form</h1>
+         </div>
+       </div> <!--  close row --> 
+      
+      <div class="row"> <!--  open row -->    
+          <div id="form-tagline" class="col-md-4">
+              <div class="form-tagline">
+                  <i class="fa fa-envelope fa-5x"></i>
+                  <h2>How Are We Doing?</h2>
+                  <p id="description" class="lead">We really value your opinion</p>
+              </div>
+          </div>
+         
+		      <div id="form-content" class="col-md-8">
+            
+            <form asp-action="AddDetails" asp-controller="Home" method="post">
+                <!-- open form -->
+                                
+                <input asp-for="Id" hidden type="text" class="form-control" >
+                <div class="row form-group">
+                   <div class="col-sm-3">
+                    <label id="name-label" class="control-label" for="name">*Name:</label>
+                   </div>
+                  
+                   <div class="input-group col-sm-9">
+                     <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon-name"><i class="fa fa-user"></i></span>
+                     </div>                   
+                     <input asp-for="Name" type="text" class="form-control" placeholder="Please Enter Your Name" name="name">
+                   </div>
+                </div>
+                 
+                <div class="form-group row">
+                   <div class="col-sm-3">
+                     <label id="email-label" class="control-label" for="email">*Email:</label>
+                   </div>
+                 
+                   <div class="input-group col-sm-9">
+                     <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon-mail"><i class="fa fa-envelope"></i></span>
+                     </div>
+                     <input asp-for="Email" type="email" class="form-control" placeholder="Enter Your Email" name="email" pattern="^[-+.\w]{1,64}[-.\w]{1,64}\.[-.\w]{2,6}$">
+                   </div>
+                </div>
+                 
+              <div class="form-group row"> 
+                
+                   <div class="col-sm-3">
+                      <label class="control-label" for="Gender">Gender:</label>
+                   </div>
+                    <div class="input-group col-sm-9">
+                        <input type="radio" asp-for="Gender" value="Male" />
+                        <span> Male </span>
+                        <input type="radio" asp-for="Gender" value="Male" />
+                        <input type="radio" asp-for="Gender" value="Male" />
+                        @Html.RadioButtonFor(a => a.Gender, "male", new { @class = "gen" })Male
+                        @Html.RadioButtonFor(a => a.Gender, "Female", new { @class = "gen" })Female
+                        @Html.RadioButtonFor(a => a.Gender, "Other", new { @class = "gen" })Other
+                    </div>
+
+                   
+                        
+                   
+                   
+                    @Html.ValidationMessageFor(a => a.Gender, "", new { @class = "error" })
+
+              </div>
+
+                <div class="row form-group">
+                    <div class="col-sm-3">
+                        <label id="name-label" class="control-label" for="name">*DOB:</label>
+                    </div>
+
+                    <div class="input-group col-sm-9">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"><i class="fa fa-calender"></i></span>
+                        </div>
+                        <input asp-for="DOB" type="date" class="form-control">
+                    </div>
+                </div>
+           
+              <hr>
+                 
+              <div class="form-group row"> 
+                 <div class="col-sm-3">
+                   <label class="control-label" for="comment">Address:</label>
+                 </div>
+                  
+                 <div class="input-group col-sm-9">
+                     <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon-mail"><i class="fa fa-Home"></i></span>
+                     </div>
+                  <textarea asp-for="Address" class="form-control" rows="5" id="comment"></textarea>
+                 </div>  
+              </div>
+                <div class="row form-group">
+                    <div class="col-sm-3">
+                        <label id="name-label" class="control-label" for="name">*Amount:</label>
+                    </div>
+
+                    <div class="input-group col-sm-9">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="basic-addon-name"><i class="fa fa-user"></i></span>
+                        </div>
+                        <input asp-for="Amount" class="form-control" placeholder="Please Enter Your Amount">
+                    </div>
+                </div>
+                
+              <div class="form-group row">
+                <div class="col-sm-12 submit-button">
+                  <button type="submit" id="submit" class="btn btn-default" aria-pressed="true">@ViewBag.msg</button>
+                </div>
+              </div>
+                               
+            </form> <!-- close form -->
+
+		    </div> <!-- close form content div -->
+               
+      </div> <!-- close row -->
+    </div>
